@@ -16,4 +16,6 @@ class Index
         echo 'hessdggsg' . $name.time();
     }
 
+
+
 }
