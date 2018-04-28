@@ -15,12 +15,8 @@ $http->on('WorkerStart', function (swoole_server $server, $worker_id) {
     define('APP_PATH', ROOT_PATH . 'application/');
     // 加载框架里面的文件
     require ROOT_PATH . 'thinkphp/base.php';
-    //require __DIR__ . '/../thinkphp/start.php';
 });
 $http->on('request', function ($request, $response) use ($http) {
-
-    //define('APP_PATH', __DIR__ . '/../application/');
-    //require __DIR__ . '/../thinkphp/base.php';
     $_SERVER = [];
     if (isset($request->server)) {
         foreach ($request->server as $k => $v) {
@@ -32,7 +28,6 @@ $http->on('request', function ($request, $response) use ($http) {
             $_SERVER[strtoupper($k)] = $v;
         }
     }
-
     $_GET = [];
     if (isset($request->get)) {
         foreach ($request->get as $k => $v) {
@@ -64,5 +59,3 @@ $http->on('request', function ($request, $response) use ($http) {
 });
 
 $http->start();
-
-// topthink/think-swoole
