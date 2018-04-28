@@ -15,6 +15,9 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
+//action  contoller/method
+Route::get('singwa', 'index/singwa');
+
 return [
 
 ];
