@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: baidu
- * Date: 18/3/27
- * Time: 上午12:50
- */
 class Http {
     CONST HOST = "0.0.0.0";
     CONST PORT = 8811;
