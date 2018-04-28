@@ -9,54 +9,50 @@ $http->set(
         'worker_num' => 5,
     ]
 );
-$http->on('WorkerStart', function(swoole_server $server,  $worker_id) {
-    define('ROOT_PATH' , __DIR__);
+$http->on('WorkerStart', function (swoole_server $server, $worker_id) {
+    define('ROOT_PATH', __DIR__ . '/../../../');
     // 定义应用目录
-    define('APP_PATH', __DIR__ . '/../../../application/');
-    print_r(ROOT_PATH);
-    print_r(APP_PATH);
-
-    exit();
+    define('APP_PATH', ROOT_PATH . 'application/');
     // 加载框架里面的文件
-    require __DIR__ . '/../../../thinkphp/base.php';
+    require ROOT_PATH . 'thinkphp/base.php';
     //require __DIR__ . '/../thinkphp/start.php';
 });
-$http->on('request', function($request, $response) use($http){
+$http->on('request', function ($request, $response) use ($http) {
 
     //define('APP_PATH', __DIR__ . '/../application/');
     //require __DIR__ . '/../thinkphp/base.php';
-    $_SERVER  =  [];
-    if(isset($request->server)) {
-        foreach($request->server as $k => $v) {
+    $_SERVER = [];
+    if (isset($request->server)) {
+        foreach ($request->server as $k => $v) {
             $_SERVER[strtoupper($k)] = $v;
         }
     }
-    if(isset($request->header)) {
-        foreach($request->header as $k => $v) {
+    if (isset($request->header)) {
+        foreach ($request->header as $k => $v) {
             $_SERVER[strtoupper($k)] = $v;
         }
     }
 
     $_GET = [];
-    if(isset($request->get)) {
-        foreach($request->get as $k => $v) {
+    if (isset($request->get)) {
+        foreach ($request->get as $k => $v) {
             $_GET[$k] = $v;
         }
     }
     $_POST = [];
-    if(isset($request->post)) {
-        foreach($request->post as $k => $v) {
+    if (isset($request->post)) {
+        foreach ($request->post as $k => $v) {
             $_POST[$k] = $v;
         }
     }
-    
+
     ob_start();
     // 执行应用并响应
     try {
         think\Container::get('app', [APP_PATH])
             ->run()
             ->send();
-    }catch (\Exception $e) {
+    } catch (\Exception $e) {
         // todo
     }
 
