@@ -4,7 +4,7 @@ class Index
 {
     public function index()
     {
-        return  'aadsfasfdsafd';
+        return  '';
     }
 
     public function singwa() {
