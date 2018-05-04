@@ -47,7 +47,6 @@ class Task {
 
         foreach ($clients as $fd) {
             $serv->push($fd, json_encode($data));
-            print_r(json_encode($data));
         }
     }
 }
